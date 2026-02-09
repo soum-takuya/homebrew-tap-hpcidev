@@ -16,7 +16,7 @@ for filepath in Formula/*.rb
 do
   fname="${filepath##*/}"
   formula="${fname%.rb}"
-  brew uninstall "${formula}" || :
+  brew uninstall "${formula}" || echo "(IGNORED)"
 done
 
 for filepath in Formula/*.rb

@@ -10,6 +10,10 @@ class JwtAgent < Formula
   depends_on "go" => :build
 
   def install
+    inreplace "jwt-agent" do |s|
+      s.gsub! "#!/bin/sh", "#!/bin/bash"
+    end
+
     system "make"
     system "make", "install", "PREFIX=#{prefix}", "MANDIR=#{man}"
   end

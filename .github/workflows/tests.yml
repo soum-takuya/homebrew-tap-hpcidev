@@ -1,0 +1,62 @@
+name: brew test-bot
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  test-bot:
+    strategy:
+      matrix:
+        os: [ ubuntu-24.04, ubuntu-24.04-arm, macos-15, macos-26 ]
+    runs-on: ${{ matrix.os }}
+    permissions:
+      actions: read
+      checks: read
+      contents: read
+      pull-requests: read
+    steps:
+      - name: Set up Homebrew
+        id: set-up-homebrew
+        uses: Homebrew/actions/setup-homebrew@main
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Cache Homebrew Bundler RubyGems
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.set-up-homebrew.outputs.gems-path }}
+          key: ${{ matrix.os }}-rubygems-${{ steps.set-up-homebrew.outputs.gems-hash }}
+          restore-keys: ${{ matrix.os }}-rubygems-
+
+      - name: Fix ruby gems directory permissions
+        # https://github.com/orgs/Homebrew/discussions/6615
+        # if: matrix.os == 'ubuntu-22.04-arm'
+        if: contains(fromJSON('["ubuntu-22.04-arm", "ubuntu-24.04-arm"]'), matrix.os)
+        run: |
+          # Fix ownership first so current user can write, then remove world-writable
+          BUNDLE_DIR="$(brew --prefix)/Homebrew/Library/Homebrew/vendor/bundle/ruby"
+          if [ -d "${BUNDLE_DIR}" ]; then
+            # Take ownership so we can write to it
+            sudo chown -R "$(whoami):$(id -gn)" "${BUNDLE_DIR}"
+            # Remove world-writable permissions to satisfy Bundler security
+            chmod -R o-w "${BUNDLE_DIR}"
+            echo "Fixed ownership and permissions for ${BUNDLE_DIR}"
+          fi
+
+      - run: brew test-bot --only-cleanup-before
+
+      - run: brew test-bot --only-setup
+
+      - run: brew test-bot --only-tap-syntax
+      - run: brew test-bot --only-formulae
+        if: github.event_name == 'pull_request'
+
+      - name: Upload bottles as artifact
+        if: always() && github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: bottles_${{ matrix.os }}
+          path: '*.bottle.*'

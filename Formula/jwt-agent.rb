@@ -14,6 +14,8 @@ class JwtAgent < Formula
       s.gsub! "#!/bin/sh", "#!/bin/bash"
     end
 
+    # workaround for "pandoc: No such file or directory"
+    touch ["jwt-agent.1.md", "jwt-agent.1"], mtime: Time.now
     system "make"
     system "make", "install", "PREFIX=#{prefix}", "MANDIR=#{man}"
   end

@@ -2,15 +2,18 @@
 
 ## For users
 
-### Tap
+### Tap this repository
 
 - brew tap hpci-auth/tap
 
-### Install bottles
-
-(Ex.)
+### Install
 
 - brew install hpcissh
+- brew install jwt-agent
+
+### Uninstall
+
+- brew uninstall BOTTLE
 
 ### Untap
 
@@ -20,14 +23,15 @@
 
 ### Check files in local before "git push"
 
-- THISDIR (homebrew-TAPNAME) ... "git clone"ed directory
-- mkdir /opt/homebrew/Library/Taps/USERNAME(ANY)/
-  - macOS: /opt/homebrew/...
-  - Etc.: $(brew --repository)/...
-- cd THISDIR
-- ln -s $(PWD) /opt/homebrew/Library/Taps/USERNAME/
-- ./check-before-push.sh USERNAME/TAPNAME
-- (optional) UNINSTALL=1 ./check-before-push.sh USERNAME/TAPNAME
+- WORKDIR=$(basename $(pwd))
+  - This "git clone"ed directory
+  - Name format: homebrew-TAPNAME
+- HOMEBREW_PREFIX=$(brew --prefix)
+  - (Ex.) macOS: /opt/homebrew
+- mkdir ${HOMEBREW_PREFIX}/Library/Taps/USERNAME(any name)/
+- ln -s $(pwd) /opt/homebrew/Library/Taps/USERNAME/
+- UNINSTALL=1 ./check-before-push.sh USERNAME/TAPNAME
+  - installing, testing and uninstalling all bottles
 - Untap the symlink
   - rm /opt/homebrew/Library/Taps/USERNAME/homebrew-TAPNAME
   - rmdir /opt/homebrew/Library/Taps/USERNAME

@@ -33,7 +33,8 @@ jobs:
 
       - name: Fix ruby gems directory permissions
         # https://github.com/orgs/Homebrew/discussions/6615
-        if: matrix.os == 'ubuntu-22.04-arm'
+        # if: matrix.os == 'ubuntu-22.04-arm'
+        if: contains(fromJSON('["ubuntu-22.04-arm", "ubuntu-24.04-arm"]'), matrix.os)
         run: |
           # Fix ownership first so current user can write, then remove world-writable
           BUNDLE_DIR="$(brew --prefix)/Homebrew/Library/Homebrew/vendor/bundle/ruby"

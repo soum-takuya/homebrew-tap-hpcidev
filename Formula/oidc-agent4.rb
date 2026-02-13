@@ -17,12 +17,16 @@ class OidcAgent4 < Formula
 
   depends_on "help2man" => :build
   depends_on "argp-standalone"
-  depends_on "jq"
   depends_on "libmicrohttpd"
   depends_on "libsodium"
   depends_on :macos # macOS only
   depends_on "pkg-config"
   depends_on "qrencode"
+
+  on_macos do
+    # /usr/bin/jq is installed in macOS 15 or later
+    depends_on "jq" if MacOS.version < :sequoia
+  end
 
   def install
     system "make", "PREFIX=#{prefix}"

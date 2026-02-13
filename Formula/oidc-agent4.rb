@@ -9,6 +9,12 @@ class OidcAgent4 < Formula
       tag: "v4.5.2"
   license "MIT"
 
+  bottle do
+    root_url "https://github.com/soum-takuya/homebrew-tap-hpcidev/releases/download/oidc-agent4-4.5.2"
+    sha256 arm64_tahoe:   "40110673a53046e9692238d842cbb59efee2c6d6ca245d960c1922e31759da52"
+    sha256 arm64_sequoia: "9f90d280c9202bcfda7da05868e28bc5b39fd8690c1d5ac16d7d92939e5fc811"
+  end
+
   depends_on "help2man" => :build
   depends_on "argp-standalone"
   depends_on "jq"

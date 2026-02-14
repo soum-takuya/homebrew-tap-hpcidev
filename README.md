@@ -36,9 +36,10 @@
 - WORKDIR=$(basename $(pwd))
   - This "git clone"ed directory
   - Name format: homebrew-TAPNAME
-- HOMEBREW_PREFIX=$(brew --prefix)
+- HOMEBREW_REPOSITORY=$(brew --repository)
   - (Ex.) macOS: /opt/homebrew
-- mkdir ${HOMEBREW_PREFIX}/Library/Taps/USERNAME(any name)/
+  - (Ex.) Linux: /home/linuxbrew/.linuxbrew/Homebrew
+- mkdir ${HOMEBREW_REPOSITORY}/Library/Taps/USERNAME(any name)/
 - ln -s $(pwd) /opt/homebrew/Library/Taps/USERNAME/
 - UNINSTALL=1 ./check-before-push.sh USERNAME/TAPNAME [Formula name]
   - installing, testing and uninstalling all formulae or a specified formula

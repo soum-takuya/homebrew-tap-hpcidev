@@ -52,7 +52,7 @@ class Hpcissh < Formula
       hpcissh-append-ssh-ca --system --update
 
       # For ~/.ssh/known_hosts per user
-      hpcissh-append-ssh-cah --user --update
+      hpcissh-append-ssh-ca --user --update
 
       To enable oidc-agent configurations, please create the directory and link the config files:
 

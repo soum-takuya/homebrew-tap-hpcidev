@@ -5,7 +5,7 @@ class Hpcissh < Formula
   # url "https://github.com/hpci-auth/hpcissh-clients.git",
   #     tag: "1.12"
   url "https://github.com/soum-takuya/hpcissh-clients-dev.git",
-      revision: "d50655f6102ce8211d4c22f9deeaff8bd570038d"
+      revision: "fdd8d3885cee13254fe0ada627eb5655f23f2e02"
   version "1.12-rc1"
 
   license "Apache-2.0"
@@ -29,13 +29,29 @@ class Hpcissh < Formula
   def install
     system "make", "prefix=#{prefix}", "bash_path=#{HOMEBREW_PREFIX}/bin/bash"
     system "make", "install", "prefix=#{prefix}"
+  end
 
-    etc_oidcagent_d = (etc/"oidc-agent")
-    etc_oidcagent_d.install_symlink pkgshare/"oidc-agent-v4_hpci-pubclients.config" => "pubclients.config"
-    issuer_config_d = (etc_oidcagent_d/"issuer.config.d")
-    issuer_config_d.mkpath
-    issuer_config_d.install_symlink pkgshare/"hpci-main" => "hpci-main"
-    issuer_config_d.install_symlink pkgshare/"hpci-sub" => "hpci-sub"
+  def caveats
+    <<~EOS
+      To append the HPCI SSH_CA public key to a known_hosts file:
+
+      # For System-wide configuration (/etc/ssh/ssh_known_hosts)
+      hpcissh-append-ssh-ca --system --update
+
+      # For ~/.ssh/known_hosts per user
+      hpcissh-append-ssh-cah --user --update
+
+      To enable oidc-agent configurations, please create the directory and link the config files:
+
+      (Please install oidc-agent in advance)
+
+      # For oidc-agent v5
+      ln -sf #{opt_pkgshare}/oidc-agent_hpci-main.conf #{etc}/oidc-agent/issuer.config.d/hpci-main
+      ln -sf #{opt_pkgshare}/oidc-agent_hpci-sub.conf  #{etc}/oidc-agent/issuer.config.d/hpci-sub
+
+      # For oidc-agent v4
+      cat #{opt_pkgshare}/oidc-agent-v4_hpci-pubclients.config >> #{etc}/oidc-agent/pubclients.config
+    EOS
   end
 
   test do

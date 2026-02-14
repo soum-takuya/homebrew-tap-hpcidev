@@ -25,7 +25,7 @@ class OidcAgent4 < Formula
 
   on_macos do
     # /usr/bin/jq is installed in macOS 15 or later
-    depends_on "jq" if MacOS.version < :sequoia
+    depends_on "jq" if OS.mac? && MacOS.version < :sequoia
   end
 
   def install

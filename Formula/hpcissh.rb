@@ -27,8 +27,13 @@ class Hpcissh < Formula
   end
 
   def install
-    system "make", "prefix=#{prefix}", "bash_path=#{HOMEBREW_PREFIX}/bin/bash"
-    system "make", "install", "prefix=#{prefix}"
+    args = %W[
+      prefix=#{prefix}
+    ]
+    # use bash version 5 on macOS
+    args << "bash_path=#{HOMEBREW_PREFIX}/bin/bash" if OS.mac?
+    system "make", *args
+    system "make", "install", *args
   end
 
   def caveats
@@ -55,6 +60,8 @@ class Hpcissh < Formula
   end
 
   test do
-    system "#{bin}/test-hpcissh"
+    assert_path_exists bin/"test-hpcissh"
+    assert_predicate bin/"test-hpcissh", :executable?
+    system bin/"test-hpcissh"
   end
 end

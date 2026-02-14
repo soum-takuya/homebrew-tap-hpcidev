@@ -11,8 +11,9 @@ class OidcAgent4 < Formula
 
   bottle do
     root_url "https://github.com/soum-takuya/homebrew-tap-hpcidev/releases/download/oidc-agent4-4.5.2"
-    sha256 arm64_tahoe:   "40110673a53046e9692238d842cbb59efee2c6d6ca245d960c1922e31759da52"
-    sha256 arm64_sequoia: "9f90d280c9202bcfda7da05868e28bc5b39fd8690c1d5ac16d7d92939e5fc811"
+    rebuild 1
+    sha256 arm64_tahoe:   "71c0027b84777ebc82328c18752a404a1a74c4babeb14cb6096880fc6841a1bb"
+    sha256 arm64_sequoia: "355a1cf9c4acbc5063dbf46c7c7ff4029d5bd15d3a141ed940bcc3db34b4c872"
   end
 
   depends_on "help2man" => :build

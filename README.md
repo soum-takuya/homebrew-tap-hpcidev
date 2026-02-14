@@ -1,6 +1,15 @@
 # homebrew-tap for HPCI
 
-## For users
+## Bottles (Pakages)
+
+- hpcissh
+  - <https://github.com/hpci-auth/hpcissh-clients>
+- jwt-agent
+  - <https://github.com/oss-tsukuba/jwt-agent>
+- oidc-agent4
+  - <https://github.com/indigo-dc/oidc-agent/releases/tag/v4.5.2>
+
+## Instructions for users
 
 ### Tap this repository
 
@@ -8,18 +17,19 @@
 
 ### Install
 
-- brew install hpcissh
-- brew install jwt-agent
+- brew install BOTTLE_NAME
+- (Ex.) brew install hpcissh
 
 ### Uninstall
 
-- brew uninstall BOTTLE
+- brew uninstall BOTTLE_NAME
+- (Ex.) brew uninstall hpcissh
 
-### Untap
+### Untap this repository
 
 - brew untap hpci-auth/tap
 
-## For developers
+## Instructions for developers
 
 ### Check files in local before "git push"
 

@@ -1,20 +1,13 @@
 # ORIGINAL: https://github.com/indigo-dc/homebrew-oidc-agent/blob/master/Formula/oidc-agent.rb
 
-class OidcAgent4 < Formula
-  desc "Manage OpenID Connect tokens on the command-line"
+class OidcAgentCliAT4 < Formula
+  desc "Manage OpenID Connect tokens on the command-line (without oidc-prompt)"
   homepage "https://github.com/indigo-dc/oidc-agent"
   # url "https://github.com/indigo-dc/oidc-agent/archive/refs/tags/v5.3.4.tar.gz"
   # sha256 "21d670851df8a726a9a8e620ec4557c3fd9cc490a06a57ddddfc5a9bdc8f9df0"
   url "https://github.com/indigo-dc/oidc-agent.git",
-      tag: "v4.5.2"
+      revision: "24d962b89e77000e7518e78f0ab20e7cfd43004e", tag: "v4.5.2"
   license "MIT"
-
-  bottle do
-    root_url "https://github.com/soum-takuya/homebrew-tap-hpcidev/releases/download/oidc-agent4-4.5.2"
-    rebuild 1
-    sha256 arm64_tahoe:   "71c0027b84777ebc82328c18752a404a1a74c4babeb14cb6096880fc6841a1bb"
-    sha256 arm64_sequoia: "355a1cf9c4acbc5063dbf46c7c7ff4029d5bd15d3a141ed940bcc3db34b4c872"
-  end
 
   depends_on "help2man" => :build
   depends_on "argp-standalone"
@@ -30,8 +23,11 @@ class OidcAgent4 < Formula
   end
 
   def install
-    system "make", "PREFIX=#{prefix}"
+    system "make", "-j#{ENV.make_jobs}", "PREFIX=#{prefix}"
     system "make", "install", "PREFIX=#{prefix}"
+
+    rm bin/"oidc-prompt"
+    rm man1/"oidc-prompt.1"
   end
 
   service do
@@ -53,6 +49,7 @@ class OidcAgent4 < Formula
   end
 
   test do
+    refute_path_exists bin/"oidc-prompt"
     assert_match version.to_s, shell_output("#{bin}/oidc-agent --version")
   end
 end

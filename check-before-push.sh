@@ -32,9 +32,9 @@ do
   then
     continue
   fi
-  brew install --build-from-source "${TAP}/${formula}"
+  brew install --verbose --build-from-source "${TAP}/${formula}"
   brew audit --formula "${TAP}/${formula}"
-  brew test "${TAP}/${formula}"
+  brew test --verbose "${TAP}/${formula}"
   if [[ "${UNINSTALL:-0}" = 1 ]]
   then
     brew uninstall "${formula}"

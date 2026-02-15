@@ -7,6 +7,12 @@ class OidcAgentCliAT5 < Formula
   sha256 "21d670851df8a726a9a8e620ec4557c3fd9cc490a06a57ddddfc5a9bdc8f9df0"
   license "MIT"
 
+  bottle do
+    root_url "https://github.com/soum-takuya/homebrew-tap-hpcidev/releases/download/oidc-agent-cli@5-5.3.4"
+    sha256 arm64_tahoe:   "c369877992ce01ff8cbbf5fedfed5ae4bc40a08bca7f337a2fd3ac59195a74bc"
+    sha256 arm64_sequoia: "6fd08937584da8e9375e1531d6ba01242e91e522b05e91c6d2a56f00cf7b9be6"
+  end
+
   depends_on "help2man" => :build
   depends_on "argp-standalone"
   depends_on "libmicrohttpd"

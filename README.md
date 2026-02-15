@@ -1,6 +1,6 @@
 # homebrew-tap for HPCI
 
-## Bottles (Pakages)
+## Bottles (Packages)
 
 - hpcissh
   - <https://github.com/hpci-auth/hpcissh-clients>
@@ -63,7 +63,7 @@ https://brew.sh/2020/11/18/homebrew-tap-with-bottles-uploaded-to-github-releases
   - git push
 - (in GitHub Web UI)
   - Create a pull request (the ANYNAME to main branch)
-  - Wait until the pull request’s checks become gree.
+  - Wait until the pull request’s checks become green.
   - Then label your pull request with the `pr-pull` label.
   - After a couple...
     - PR closed,

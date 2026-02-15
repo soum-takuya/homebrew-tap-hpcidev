@@ -7,9 +7,6 @@ class OidcAgentCliAT5 < Formula
   sha256 "21d670851df8a726a9a8e620ec4557c3fd9cc490a06a57ddddfc5a9bdc8f9df0"
   license "MIT"
 
-  conflicts_with "oidc-agent", because: "conflict"
-  conflicts_with "oidc-agent-cli@4", because: "conflict"
-
   depends_on "help2man" => :build
   depends_on "argp-standalone"
   depends_on "libmicrohttpd"

@@ -15,9 +15,6 @@ class OidcAgentCliAT4 < Formula
     sha256 arm64_sequoia: "f06922fc04bee26ecc507b59704240d44ed4de931f58d86ef86e23c84145a042"
   end
 
-  conflicts_with "oidc-agent", because: "conflict"
-  conflicts_with "oidc-agent-cli@5", because: "conflict"
-
   depends_on "help2man" => :build
   depends_on "argp-standalone"
   depends_on "libmicrohttpd"

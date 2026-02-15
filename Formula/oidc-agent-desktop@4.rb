@@ -7,6 +7,12 @@ class OidcAgentDesktopAT4 < Formula
       revision: "24d962b89e77000e7518e78f0ab20e7cfd43004e", tag: "v4.5.2"
   license "MIT"
 
+  bottle do
+    root_url "https://github.com/soum-takuya/homebrew-tap-hpcidev/releases/download/oidc-agent-desktop@4-4.5.2"
+    sha256 cellar: :any, arm64_tahoe:   "94c844d7106cd7ac73860f2ecf43121001ad3366bbc1d6caa3573924307ec004"
+    sha256 cellar: :any, arm64_sequoia: "8aa8032400da242525ae625e2ea4122fd83d53138f5e2853bcb3bca3036fd5a0"
+  end
+
   depends_on "help2man" => :build
   depends_on "argp-standalone"
   depends_on "libmicrohttpd"

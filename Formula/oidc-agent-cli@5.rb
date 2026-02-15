@@ -1,22 +1,14 @@
 # ORIGINAL: https://github.com/indigo-dc/homebrew-oidc-agent/blob/master/Formula/oidc-agent.rb
 
-class OidcAgentCliAT4 < Formula
+class OidcAgentCliAT5 < Formula
   desc "Manage OpenID Connect tokens on the command-line (without oidc-prompt)"
   homepage "https://github.com/indigo-dc/oidc-agent"
-  # url "https://github.com/indigo-dc/oidc-agent/archive/refs/tags/v5.3.4.tar.gz"
-  # sha256 "21d670851df8a726a9a8e620ec4557c3fd9cc490a06a57ddddfc5a9bdc8f9df0"
-  url "https://github.com/indigo-dc/oidc-agent.git",
-      revision: "24d962b89e77000e7518e78f0ab20e7cfd43004e", tag: "v4.5.2"
+  url "https://github.com/indigo-dc/oidc-agent/archive/refs/tags/v5.3.4.tar.gz"
+  sha256 "21d670851df8a726a9a8e620ec4557c3fd9cc490a06a57ddddfc5a9bdc8f9df0"
   license "MIT"
 
-  bottle do
-    root_url "https://github.com/soum-takuya/homebrew-tap-hpcidev/releases/download/oidc-agent-cli@4-4.5.2"
-    sha256 arm64_tahoe:   "e648fc3fc2c611c6262eb9540e5df426017d0bfd9a9530c8a494ae76a1838eee"
-    sha256 arm64_sequoia: "f06922fc04bee26ecc507b59704240d44ed4de931f58d86ef86e23c84145a042"
-  end
-
   conflicts_with "oidc-agent", because: "conflict"
-  conflicts_with "oidc-agent-cli@5", because: "conflict"
+  conflicts_with "oidc-agent-cli@4", because: "conflict"
 
   depends_on "help2man" => :build
   depends_on "argp-standalone"

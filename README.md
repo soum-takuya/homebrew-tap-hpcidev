@@ -6,8 +6,12 @@
   - <https://github.com/hpci-auth/hpcissh-clients>
 - jwt-agent
   - <https://github.com/oss-tsukuba/jwt-agent>
-- oidc-agent4
+- oidc-agent-cli@4
   - <https://github.com/indigo-dc/oidc-agent/releases/tag/v4.5.2>
+  - without oidc-prompt
+- oidc-agent-cli@5
+  - <https://github.com/indigo-dc/oidc-agent>
+  - without oidc-prompt
 
 ## Instructions for users
 

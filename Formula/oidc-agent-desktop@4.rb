@@ -13,9 +13,6 @@ class OidcAgentDesktopAT4 < Formula
     sha256 cellar: :any, arm64_sequoia: "8aa8032400da242525ae625e2ea4122fd83d53138f5e2853bcb3bca3036fd5a0"
   end
 
-  conflicts_with "oidc-agent", because: "conflict"
-  conflicts_with "oidc-agent-desktop@5", because: "conflict"
-
   depends_on "help2man" => :build
   depends_on "argp-standalone"
   depends_on "libmicrohttpd"

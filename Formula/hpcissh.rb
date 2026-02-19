@@ -5,8 +5,8 @@ class Hpcissh < Formula
   # url "https://github.com/hpci-auth/hpcissh-clients.git",
   #     tag: "1.12"
   url "https://github.com/soum-takuya/hpcissh-clients-dev.git",
-      revision: "fdd8d3885cee13254fe0ada627eb5655f23f2e02"
-  version "1.12-rc1"
+      revision: "bbe3962c5cf2d340575c3bfd8ab2c734cba00c0a"
+  version "1.12-rc2"
 
   license "Apache-2.0"
 
@@ -45,28 +45,10 @@ class Hpcissh < Formula
     system "make", "install", *args
   end
 
-  def caveats
-    <<~EOS
-      To append the HPCI SSH_CA public key to a known_hosts file:
-
-      # For System-wide configuration (/etc/ssh/ssh_known_hosts)
-      hpcissh-append-ssh-ca --system --update
-
-      # For ~/.ssh/known_hosts per user
-      hpcissh-append-ssh-ca --user --update
-
-      To enable oidc-agent configurations, please create the directory and link the config files:
-
-      (Please install oidc-agent in advance)
-
-      # For oidc-agent v5
-      ln -sf #{opt_pkgshare}/oidc-agent_hpci-main.conf #{etc}/oidc-agent/issuer.config.d/hpci-main
-      ln -sf #{opt_pkgshare}/oidc-agent_hpci-sub.conf  #{etc}/oidc-agent/issuer.config.d/hpci-sub
-
-      # For oidc-agent v4
-      cat #{opt_pkgshare}/oidc-agent-v4_hpci-pubclients.config >> #{etc}/oidc-agent/pubclients.config
-    EOS
-  end
+  # def caveats
+  #   <<~EOS
+  #   EOS
+  # end
 
   test do
     assert_path_exists bin/"test-hpcissh"

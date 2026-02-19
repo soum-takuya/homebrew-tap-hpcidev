@@ -3,10 +3,10 @@ class Hpcissh < Formula
   homepage "https://github.com/hpci-auth/hpcissh-clients"
 
   # url "https://github.com/hpci-auth/hpcissh-clients.git",
-  #     tag: "1.12"
+  #     tag: "v1.12.0"
   url "https://github.com/soum-takuya/hpcissh-clients-dev.git",
       revision: "bbe3962c5cf2d340575c3bfd8ab2c734cba00c0a"
-  version "1.12-rc2"
+  version "1.12.0-rc2"
 
   license "Apache-2.0"
 

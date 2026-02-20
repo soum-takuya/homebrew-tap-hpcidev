@@ -3,13 +3,36 @@ set -euo pipefail
 set -x
 
 # Usage:
-#   ./check-before-push.sh USERNAME/TAPNAME
+#   ./check-before-push.sh [Formula name]
 
-# local TAP (brew tap)
-TAP="$1"
-FORMULA="${2:-}"
+# Arguments
+FORMULA="${1:-}"
 
+# Environment variables
+UNINSTALL="${UNINSTALL:-1}" # default: uninstall after test
+
+# Local TAP (brew tap)
+TAP="hpci-auth/tap-localtest"
 export HOMEBREW_NO_AUTO_UPDATE=1
+
+REPO=$(brew --repo "${TAP}")
+REPO_PARENT=$(dirname "${REPO}")
+THIS_DIR=$(pwd)
+
+if [[ -e "${REPO}" ]]
+then
+  if [[ ! -s "${REPO}" ]]
+  then
+    echo >&2 "Error: ${REPO}: Directory exists"
+    exit 1
+  fi
+  # symlink
+  echo "Info: ${REPO} (symlink) will be replaced"
+  rm -f "${REPO}"
+fi
+
+mkdir -p "${REPO_PARENT}"
+ln -s "${THIS_DIR}" "${REPO}"
 
 brew style "${TAP}"
 
@@ -35,8 +58,13 @@ do
   brew install --verbose --build-from-source "${TAP}/${formula}"
   brew audit --formula "${TAP}/${formula}"
   brew test --verbose "${TAP}/${formula}"
-  if [[ "${UNINSTALL:-0}" = 1 ]]
+  if [[ "${UNINSTALL}" = 1 ]]
   then
     brew uninstall "${formula}"
   fi
 done
+
+set +x
+echo
+echo "NOTE: To untap the local tap (${TAP}),"
+echo "  Run 'rm ${REPO}'"

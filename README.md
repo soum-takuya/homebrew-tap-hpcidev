@@ -37,38 +37,31 @@
 
 ### Check files in local before "git push"
 
-- WORKDIR=$(basename $(pwd))
-  - This "git clone"ed directory
-  - Name format: homebrew-TAPNAME
-- HOMEBREW_REPOSITORY=$(brew --repository)
-  - (Ex.) macOS: /opt/homebrew
-  - (Ex.) Linux: /home/linuxbrew/.linuxbrew/Homebrew
-- mkdir ${HOMEBREW_REPOSITORY}/Library/Taps/USERNAME(any name)/
-- ln -s $(pwd) /opt/homebrew/Library/Taps/USERNAME/
-- UNINSTALL=1 ./check-before-push.sh USERNAME/TAPNAME [Formula name]
-  - installing, testing and uninstalling all formulae or a specified formula
+- `REPOSITORY=$(brew --repo hpci-auth/tap-localtest)`
+- .`/check-before-push.sh [Formula name]`
+  - The `${REPOSITORY}` directory is created automatically
+  - Installing, Testing and Uninstalling all formulae or a specified formula
 - Untap the symlink
-  - rm /opt/homebrew/Library/Taps/USERNAME/homebrew-TAPNAME
-  - rmdir /opt/homebrew/Library/Taps/USERNAME
+  - `rm ${REPOSITORY}`
 
 ### Release (push and merge)
 
 https://brew.sh/2020/11/18/homebrew-tap-with-bottles-uploaded-to-github-releases/
 
-- (in local)
+- (In local)
   - git checkout -b ANYNAME(branch name)
   - (Edit files)
   - (git add ...)
   - git commit
   - git push
-- (in GitHub Web UI)
+- (In GitHub Web UI)
   - Create a pull request (the ANYNAME to main branch)
   - Wait until the pull request’s checks become green.
   - Then label your pull request with the `pr-pull` label.
-  - After a couple...
-    - PR closed,
-    - bottles uploaded,
-    - commits pushed to the main branch
+  - After a couple of minutes...
+    - PR closed automatically,
+    - bottles uploaded automatically,
+    - commits pushed to the main branch automatically
 
 ### GitHub Actions Runner
 

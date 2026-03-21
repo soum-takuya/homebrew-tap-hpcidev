@@ -14,11 +14,11 @@ class Hpcissh < Formula
   head "https://github.com/soum-takuya/hpcissh-clients-dev.git", branch: "develop"
 
   bottle do
-    root_url "https://github.com/soum-takuya/homebrew-tap-hpcidev/releases/download/hpcissh-1.12.0-rc4"
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "f319eafddccd04bbd408583a7a091dd1f8dfd9a6fdbbf6abb236d17e0544d818"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "f1157c5c7fcba4d026b1d43d9108c4183c9734b9bede544311a6ad9f9ceb5ce3"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "135353e71dd726670d3f01cc9f2ab7e29de0cb66a558629e17a3075165de13df"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "f001743be41c7e36b0d5b54bd1ebb091018db8425c812ef488fab7c1c679762e"
+    root_url "https://github.com/soum-takuya/homebrew-tap-hpcidev/releases/download/hpcissh-1.12.0-rc5"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "dfb482f26de21016e7bc38a8ea15a4323409a715aa705325c90f2c25b2f1549f"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "ba8c11e94e1c3eb2fb33f03f792b49788de6b070517638cffdfc789b6acb7b49"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "efd1b5c0f0a3be438ac61fd02b260315d08bddf364aaa0c39a9dd15150fa1f7a"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "5495ab6f820557890843333c8ee77b80756fc09f2b80e21055f1176dc84a03e0"
   end
 
   depends_on "jwt-agent"

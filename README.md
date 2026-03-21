@@ -49,11 +49,11 @@
 https://brew.sh/2020/11/18/homebrew-tap-with-bottles-uploaded-to-github-releases/
 
 - (In local)
-  - git checkout -b ANYNAME(branch name)
+  - git checkout -b <BRANCH NAME(any)>
   - (Edit files)
   - (git add ...)
   - git commit
-  - git push
+  - git push origin <the BRANCH NAME>
 - (In GitHub Web UI)
   - Create a pull request (the ANYNAME to main branch)
   - Wait until the pull request’s checks become green.

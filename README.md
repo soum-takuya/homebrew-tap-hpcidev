@@ -49,13 +49,13 @@
 https://brew.sh/2020/11/18/homebrew-tap-with-bottles-uploaded-to-github-releases/
 
 - (In local)
-  - git checkout -b <BRANCH NAME(any)>
+  - git checkout -b <BRANCH_NAME(any)>
   - (Edit files)
   - (git add ...)
   - git commit
-  - git push origin <the BRANCH NAME>
+  - git push origin <the BRANCH_NAME>
 - (In GitHub Web UI)
-  - Create a pull request (the ANYNAME to main branch)
+  - Create a pull request (the BRANCH_NAME to main branch)
   - Wait until the pull request’s checks become green.
   - Then label your pull request with the `pr-pull` label.
   - After a couple of minutes...
